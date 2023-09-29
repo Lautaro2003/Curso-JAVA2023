@@ -1,115 +1,149 @@
 //ejercicio1
-import java.util.Scanner;
-
-public class ObtenerPorcentaje {
+public class BusquedaEnArreglo {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        int[] arreglo = {10, 20, 30, 40, 50}; 
+        int numeroABuscar = 30; 
 
-        System.out.print("Ingrese un número real: ");
-        double numeroReal = scanner.nextDouble();
+        boolean encontrado = false; 
 
-        System.out.print("Ingrese un número entero: ");
-        int numeroEntero = scanner.nextInt();
+        for (int i = 0; i < arreglo.length; i++) {
+            if (arreglo[i] == numeroABuscar) {
+                encontrado = true;
+                break; 
+            }
+        }
 
-        scanner.close();
-
-        double porcentaje = (numeroReal / numeroEntero) * 100;
-
-        System.out.println(numeroReal + " es el " + porcentaje + "% de " + numeroEntero);
+        if (encontrado) {
+            System.out.println("Se encontró el número " + numeroABuscar);
+        } else {
+            System.out.println("No se encontró el número " + numeroABuscar);
+        }
     }
 }
 //ejercicio2
 import java.util.Scanner;
 
-public class ConversionDolaresAPesos {
+public class MaximoYMinimoEnArreglo {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        double tasaDeCambio = 20.0; 
+        int[] numeros = new int[5];
 
-        System.out.print("Ingrese la cantidad en dólares: ");
-        double dolares = scanner.nextDouble();
+        for (int i = 0; i < 5; i++) {
+            System.out.print("Ingrese el número " + (i + 1) + ": ");
+            numeros[i] = scanner.nextInt();
+        }
+
+        int maximo = numeros[0];
+        int minimo = numeros[0];
+
+        for (int i = 1; i < 5; i++) {
+            if (numeros[i] > maximo) {
+                maximo = numeros[i];
+            }
+            if (numeros[i] < minimo) {
+                minimo = numeros[i];
+            }
+        }
+
+        System.out.println("El valor máximo es: " + maximo);
+        System.out.println("El valor mínimo es: " + minimo);
 
         scanner.close();
-
-        double pesos = dolares * tasaDeCambio;
-
-        System.out.println(dolares + " dólares equivalen a " + pesos + " pesos.");
     }
 }
 //ejercicio3
 import java.util.Scanner;
 
-public class ConversionEurosADolares {
+public class AmigosMayoresDeEdad {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        double tasaDeCambio = 1.20; 
+        System.out.print("Ingrese la cantidad de amigos: ");
+        int cantidadAmigos = scanner.nextInt();
 
-        System.out.print("Ingrese la cantidad en euros: ");
-        double euros = scanner.nextDouble();
+        String[] nombres = new String[cantidadAmigos];
+        int[] edades = new int[cantidadAmigos];
+
+        for (int i = 0; i < cantidadAmigos; i++) {
+            scanner.nextLine(); 
+            System.out.print("Ingrese el nombre del amigo " + (i + 1) + ": ");
+            nombres[i] = scanner.nextLine();
+            System.out.print("Ingrese la edad de " + nombres[i] + ": ");
+            edades[i] = scanner.nextInt();
+        }
+
+        int indiceAmigoMayor = 0;
+        int edadMayor = edades[0];
+
+        for (int i = 1; i < cantidadAmigos; i++) {
+            if (edades[i] > edadMayor) {
+                edadMayor = edades[i];
+                indiceAmigoMayor = i;
+            }
+        }
+
+        System.out.println("Amigos mayores de edad:");
+        for (int i = 0; i < cantidadAmigos; i++) {
+            if (edades[i] >= 18) {
+                System.out.println(nombres[i]);
+            }
+        }
+
+        System.out.println("El amigo más mayor es " + nombres[indiceAmigoMayor] + " con " + edadMayor + " años.");
 
         scanner.close();
-
-        double dolares = euros * tasaDeCambio;
-
-        System.out.println(euros + " euros equivalen a " + dolares + " dólares.");
     }
 }
 //ejercicio4
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class ConversionLibrasEsterlinasADolares {
+public class OrdenarNumeros {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        double tasaDeCambio = 1.40; 
+        System.out.print("Ingrese la cantidad de números: ");
+        int cantidadNumeros = scanner.nextInt();
 
-        System.out.print("Ingrese la cantidad en libras esterlinas: ");
-        double librasEsterlinas = scanner.nextDouble();
+        double[] numeros = new double[cantidadNumeros];
+
+        for (int i = 0; i < cantidadNumeros; i++) {
+            System.out.print("Ingrese el número " + (i + 1) + ": ");
+            numeros[i] = scanner.nextDouble();
+        }
+
+        Arrays.sort(numeros);
+
+        System.out.println("Números ordenados de forma ascendente:");
+        for (int i = 0; i < cantidadNumeros; i++) {
+            System.out.println(numeros[i]);
+        }
 
         scanner.close();
-
-        double dolares = librasEsterlinas * tasaDeCambio;
-
-        System.out.println(librasEsterlinas + " libras esterlinas equivalen a " + dolares + " dólares.");
     }
 }
 //ejercicio5
-import java.util.Scanner;
+import java.util.Arrays;
 
-public class ConversionPesosAEuros {
+public class RestaDeArreglos {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        double[] arreglo1 = {10.5, 20.3, 15.7, 8.2};
+        double[] arreglo2 = {5.5, 25.8, 10.0, 12.0};
 
-        double tasaDeCambio = 0.05; 
+        if (arreglo1.length != arreglo2.length) {
+            System.out.println("Los arreglos deben tener la misma longitud.");
+            return;
+        }
 
-        System.out.print("Ingrese la cantidad en pesos: ");
-        double pesos = scanner.nextDouble();
+        double[] resultado = new double[arreglo1.length];
 
-        scanner.close();
+        for (int i = 0; i < arreglo1.length; i++) {
+            double resta = arreglo1[i] - arreglo2[i];
+            resultado[i] = (resta < 0) ? 0 : resta;
+        }
 
-        double euros = pesos * tasaDeCambio;
-
-        System.out.println(pesos + " pesos equivalen a " + euros + " euros.");
-    }
-}
-//ejercicio6
-import java.util.Scanner;
-
-public class ConversionBitcoinsADolares {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        double tasaDeCambio = 50000.0; 
-
-        System.out.print("Ingrese la cantidad en bitcoins: ");
-        double bitcoins = scanner.nextDouble();
-
-        scanner.close();
-
-        double dolares = bitcoins * tasaDeCambio;
-
-        System.out.println(bitcoins + " bitcoins equivalen a " + dolares + " dólares.");
+        System.out.println("Resultado de la resta (con valores no negativos):");
+        System.out.println(Arrays.toString(resultado));
     }
 }
